@@ -72,7 +72,7 @@
       </div>
 
       <!-- Link symptoms field -->
-      <label for="link-symptom">Search Disease By Symptoms (Diagnose)</label>
+      <label for="link-symptom">Link Symptoms</label>
       <v-autocomplete
         :items="symptoms"
         v-model="disease.symptoms"
@@ -90,7 +90,7 @@
       </p>
 
       <!-- Disease classification field -->
-      <label for="link-classification">Link classifications</label>
+      <!-- <label for="link-classification">Link classifications</label>
       <v-autocomplete
         :items="classifications"
         v-model="disease.disease_classifications"
@@ -102,11 +102,11 @@
         multiple
         solo
         label="Link Classification"
-      ></v-autocomplete>
+      ></v-autocomplete> -->
 
       <!-- Disease category field -->
       <label for="link-category">Link Categories</label>
-      <v-autocomplete
+      <!-- <v-autocomplete
         :items="categories"
         v-model="disease.disease_categories"
         item-text="name"
@@ -116,7 +116,7 @@
         multiple
         solo
         label="Link Category"
-      ></v-autocomplete>
+      ></v-autocomplete> -->
 
       <button class="btn btn-primary" @click="updateDisease">update</button>
     </form>
@@ -177,7 +177,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "disease/admin/diseases/get-disease/" + this.$route.params.uuid;
+      let url = "disease/doctor/diseases/get-disease/" + this.$route.params.uuid;
       this.$axios
         .get(url)
         .then((response) => {
@@ -249,7 +249,7 @@ export default {
       console.log("UPdate, available symptoms:");
       console.log(this.disease.symptoms);
       let url =
-        "disease/admin/diseases/update-disease/" + this.$route.params.uuid;
+        "disease/doctor/diseases/update-disease/" + this.$route.params.uuid;
       this.$axios
         .post(url, {
           name: this.disease.name,
@@ -287,7 +287,7 @@ export default {
      */
     getAllSymptoms() {
       this.symptoms = [];
-      let url = "symptom/admin/symptoms/get-all/" + "true";
+      let url = "symptom/doctor/symptoms/get-all/" + "true";
       this.$axios
         .get(url)
         .then((response) => {
@@ -307,7 +307,7 @@ export default {
      */
     getAllCategories() {
       this.categories = [];
-      let url = "disease-category/admin/disease-categories/get-all";
+      let url = "disease-category/doctor/disease-categories/get-all";
       this.$axios
         .get(url)
         .then((response) => {
@@ -324,7 +324,7 @@ export default {
      */
     getAllClassifications() {
       this.clasifications = [];
-      let url = "disease-classification/admin/disease-classifications/get-all";
+      let url = "disease-classification/doctor/disease-classifications/get-all";
       this.$axios
         .get(url)
         .then((response) => {

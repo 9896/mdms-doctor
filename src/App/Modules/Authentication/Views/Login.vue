@@ -44,6 +44,10 @@
               </div>
               <div class="card-body px-lg-5 py-lg-5">
                 <form role="form" class="sign-in-form">
+                  <!-- CombinationError -->
+                  <small class="form-text text-danger" v-if="combinationError">
+                    {{ combinationError }}
+                  </small>
                   <div class="form-group mb-3">
                     <div
                       class="
@@ -101,6 +105,13 @@
                       custom-control custom-control-alternative custom-checkbox
                     "
                   >
+                    <span>
+                      <router-link :to="{ name: 'Reset' }" class="nav-link">
+                        <span class="small nav-link-inner--text"
+                          >Forgot password?</span
+                        >
+                      </router-link>
+                    </span>
                     <input
                       class="custom-control-input"
                       id=" customCheckLogin"
@@ -111,6 +122,13 @@
                     </label>
                   </div>
                   <div class="text-center">
+                    <span>
+                      <router-link :to="{ name: 'Register' }" class="nav-link">
+                        <span class="nav-link-inner--text"
+                          >Not yet a member? Register</span
+                        >
+                      </router-link>
+                    </span>
                     <button
                       type="button"
                       class="btn btn-primary my-4"
@@ -138,12 +156,13 @@ export default {
   data() {
     return {
       loginData: {
-        email: "ykeebler@example.com",
+        email: "blah@gmail.com",
         password: "12345678",
       },
       formError: [],
       loader: "spinner",
       rep: "",
+      combinationError: false,
     };
   },
 
@@ -156,15 +175,20 @@ export default {
       let loader = this.$loading.show({
         loader: this.loader,
       });
-
+      this.combinationError = false;
       this.formError = [];
       this.$axios
-        .post("/authentication/admins/login", this.loginData)
+        .post("/authentication/doctors/login", this.loginData)
         .then((response) => {
+          if (response.data[0].message) {
+            this.combinationError = response.data[0].message;
+          }
           let token = response.data[0].access_token;
+          console.log(response.data[0].access_token);
           if (token) {
+            console.log("Manze Token" + token);
             this.$store.dispatch("set_token", token);
-            this.setUserDetails("/admin/me");
+            this.setUserDetails("/doctor/me");
             this.$router.push({ name: "Home" });
           }
         })

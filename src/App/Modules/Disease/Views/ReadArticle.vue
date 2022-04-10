@@ -104,7 +104,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "disease/admin/diseases/get-disease/" + this.$route.params.uuid;
+      let url = "disease/doctor/diseases/get-disease/" + this.$route.params.uuid;
       this.$axios
         .get(url)
         .then((response) => {

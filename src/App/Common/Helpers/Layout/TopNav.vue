@@ -5,7 +5,6 @@
   >
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       
         <h1 class="text-center navbar-text">MDMS</h1>
       </div>
     </div>
@@ -19,7 +18,16 @@ export default {
 </script>
 
 <style scoped>
-.navbar-text{
+.navbar-text {
   color: rgb(233, 233, 233);
+}
+
+nav {
+  width: 100%;
+}
+
+ul.left {
+  position: absolute;
+  right: 0;
 }
 </style>

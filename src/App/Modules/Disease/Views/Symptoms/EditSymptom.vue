@@ -55,7 +55,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "symptom/admin/symptoms/get-symptom/" + this.$route.params.uuid;
+      let url = "symptom/doctor/symptoms/get-symptom/" + this.$route.params.uuid;
       this.$axios
         .get(url)
         .then((response) => {
@@ -79,7 +79,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "symptom/admin/symptoms/update-symptom/" + this.$route.params.uuid;
+      let url = "symptom/doctor/symptoms/update-symptom/" + this.$route.params.uuid;
       this.$axios
         .post(url, {
           name: this.symptomName

@@ -59,7 +59,7 @@ export default {
         onCancel: this.cancelled,
       });
       let url =
-        "symptom/admin/symptoms/store-symptom";
+        "symptom/doctor/symptoms/store-symptom";
       this.$axios
         .post(url, {
           name: this.symptomName,
@@ -70,11 +70,14 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors.name[0]);
-          //if (error.response.data.errors.name) {
+          //console.log(error.response.data.errors.name[0]);
+          if (error.length !== 1) {
           this.serverResponse = error.response.data.errors.name[0];
           this.errorAlertDisplay(this.serverResponse);
-          //}
+          }else{
+            this.serverResponse = error[0];
+            this.errorAlertDisplay(this.serverResponse);
+          }
         })
         .finally(() => loader.hide());
     },

@@ -9,11 +9,13 @@ let Authentication = {
     },
 
     methods: {
-         setUserDetails(url = '/admin-user/me') {//not that a second argument redirect=true, has been removed
+         setUserDetails(url = '/doctor/me') {//not that a second argument redirect=true, has been removed
              this.authentication_loader = true
         //     // user/me
              this.$axios.get(url)
              .then(response => {
+                 console.log("From Set USer: ");
+                 console.log(response);
                 let user = response.data.data;
                 //store user
                 if(user) {

@@ -98,7 +98,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "symptom/admin/symptoms/get-all/" + "true";
+      let url = "symptom/doctor/symptoms/get-all/" + "true";
       this.$axios
         .get(url)
         .then((response) => {
@@ -130,7 +130,7 @@ export default {
         //canCancel: true,
         onCancel: this.cancelled,
       });
-      let url = "disease/diseases/get-disease-by-symptoms";
+      let url = "disease/doctor/diseases/get-disease-by-symptoms";
       this.$axios
         .post(url, {
           symptom: this.diseaseSymptoms,

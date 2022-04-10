@@ -64,12 +64,12 @@
             class="btn btn-tooltip"
             data-toggle="tooltip"
             data-placement="top"
-            title="Edit"
+            title="Track Symptom"
             data-container="body"
             data-animation="true"
-            :to="{ name: 'EditSymptom', params: { uuid: item.uuid } }"
+            :to="{ name: 'TrackSymptom', params: { uuid: item.uuid } }"
           >
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-assistive-listening-systems"></i>
           </router-link>
         </div>
       </template>
@@ -136,7 +136,7 @@ export default {
       });
       //get-all for symptoms
       this.$axios
-        .get("symptom/admin/symptoms/get-all", {
+        .get("symptom/doctor/symptoms/get-all", {
           params: {
             page: this.page,
           },
@@ -206,7 +206,7 @@ export default {
       //get-all for symptoms
       this.$axios
         .post(
-          "symptom/admin/symptoms/get-symptoms",
+          "symptom/doctor/symptoms/get-symptoms",
           {
             symptom: this.symptomName,
           },
@@ -257,7 +257,7 @@ export default {
         onCancel: this.cancelled,
       });
       //get-all for symptoms
-      let url = "symptom/admin/symptoms/delete-symptom/" + uuid;
+      let url = "symptom/doctor/symptoms/delete-symptom/" + uuid;
       this.$axios
         .post(url)
         .then((response) => {

@@ -106,7 +106,7 @@ export default {
       });
       //get-all for diseases
       this.$axios
-        .get("disease/admin/diseases/get-all", {
+        .get("disease/doctor/diseases/get-all", {
           params: {
             page: this.page,
           },
@@ -169,7 +169,7 @@ export default {
       //get-all for diseases
       this.$axios
         .post(
-          "disease/admin/diseases/get-diseases",
+          "disease/doctor/diseases/get-diseases",
           {
             disease: this.diseaseName,
           },

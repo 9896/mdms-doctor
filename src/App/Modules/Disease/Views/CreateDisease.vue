@@ -90,7 +90,7 @@
       </p>
 
       <!-- Disease classification field -->
-      <label for="link-classification">Link classifcations</label>
+      <!-- <label for="link-classification">Link classifcations</label>
       <v-autocomplete
         :items="classifications"
         v-model="disease.disease_classifications"
@@ -102,10 +102,10 @@
         multiple
         solo
         label="Link Classification"
-      ></v-autocomplete>
+      ></v-autocomplete> -->
 
       <!-- Disease category field -->
-      <label for="link-category">Link Categories</label>
+      <!-- <label for="link-category">Link Categories</label>
       <v-autocomplete
         :items="categories"
         v-model="disease.disease_categories"
@@ -116,7 +116,7 @@
         multiple
         solo
         label="Link Category"
-      ></v-autocomplete>
+      ></v-autocomplete> -->
 
       <button class="btn btn-primary" @click="createDisease">Create</button>
     </form>
@@ -205,7 +205,7 @@ export default {
       });
       console.log("Create, available symptoms:");
       console.log(this.disease.symptoms);
-      let url = "disease/admin/diseases/store-disease/";
+      let url = "disease/doctor/diseases/store-disease/";
       this.$axios
         .post(url, {
           name: this.disease.name,
@@ -225,7 +225,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors);
+          //console.log(error.response.data.errors);
           //if (error.response.data.errors.name) {
           this.errorResponse = error.response.data.errors;
           console.log("serverResponse:");
@@ -244,7 +244,7 @@ export default {
      */
     getAllSymptoms() {
       this.symptoms = [];
-      let url = "symptom/admin/symptoms/get-all/" + "true";
+      let url = "symptom/doctor/symptoms/get-all/" + "true";
       this.$axios
         .get(url)
         .then((response) => {
@@ -264,7 +264,7 @@ export default {
      */
     getAllCategories() {
       this.categories = [];
-      let url = "disease-category/admin/disease-categories/get-all";
+      let url = "disease-category/doctor/disease-categories/get-all";
       this.$axios
         .get(url)
         .then((response) => {
@@ -281,7 +281,7 @@ export default {
      */
     getAllClassifications() {
       this.clasifications = [];
-      let url = "disease-classification/admin/disease-classifications/get-all";
+      let url = "disease-classification/doctor/disease-classifications/get-all";
       this.$axios
         .get(url)
         .then((response) => {
