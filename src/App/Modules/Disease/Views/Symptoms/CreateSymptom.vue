@@ -69,13 +69,14 @@ export default {
           this.successAlertDisplay();
         })
         .catch((error) => {
-          console.log(error);
+          console.log("Nd0 hii")
+          console.log(error.response.data[0]);
           //console.log(error.response.data.errors.name[0]);
-          if (error.length !== 1) {
+          if (error.response.data[0] !== "User does not have this permission") {
           this.serverResponse = error.response.data.errors.name[0];
           this.errorAlertDisplay(this.serverResponse);
           }else{
-            this.serverResponse = error[0];
+            this.serverResponse = error.response.data[0];
             this.errorAlertDisplay(this.serverResponse);
           }
         })

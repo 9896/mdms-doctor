@@ -92,6 +92,7 @@ export default {
       page: undefined,
       pageCount: undefined,
       activePage: "",
+      serverResponse: false,
       headers: [
         { text: "Diseases", align: "start", value: "name" },
         { text: "Content", sortable: false, value: "content" },
@@ -268,6 +269,8 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.serverResponse = error.response.data[0];
+          this.errorAlertDisplay(this.serverResponse);
         })
         .finally(() => loader.hide());
     },
@@ -289,6 +292,9 @@ export default {
           this.getAllDiseases();
         }
       });
+    },
+    errorAlertDisplay(error) {
+      this.$swal("Error", error, "error");
     },
   },
   mounted() {

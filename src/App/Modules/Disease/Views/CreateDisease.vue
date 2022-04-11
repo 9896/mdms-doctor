@@ -226,12 +226,15 @@ export default {
         .catch((error) => {
           console.log(error);
           //console.log(error.response.data.errors);
-          //if (error.response.data.errors.name) {
-          this.errorResponse = error.response.data.errors;
-          console.log("serverResponse:");
-          //console.log(this.serverResponse);
-          //this.errorAlertDisplay(this.serverResponse);
-          //}
+          if (error.response.data[0] !== "User does not have this permission") {
+            this.errorResponse = error.response.data.errors;
+            console.log("serverResponse:");
+            //console.log(this.serverResponse);
+            //this.errorAlertDisplay(this.serverResponse);
+          } else {
+            this.errorResponse = error.response.data[0];
+            this.errorAlertDisplay(this.errorResponse);
+          }
         })
         .finally(() => loader.hide());
     },

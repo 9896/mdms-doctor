@@ -101,6 +101,7 @@ export default {
       page: undefined,
       pageCount: undefined,
       activePage: "",
+      serverResponse: false,
       headers: [
         { text: "Symptoms", align: "start", value: "name" },
         { text: "Actions", sortable: false, value: "actions" },
@@ -264,7 +265,8 @@ export default {
           console.log("hehe" + response.data);
         })
         .catch((error) => {
-          console.log(error);
+            this.serverResponse = error.response.data[0];
+            this.errorAlertDisplay(this.serverResponse);
         })
         .finally(() => loader.hide());
     },
@@ -286,6 +288,9 @@ export default {
           this.getAllSymptoms();
         }
       });
+    },
+    errorAlertDisplay(error) {
+      this.$swal("Error", error, "error");
     },
   },
   mounted() {

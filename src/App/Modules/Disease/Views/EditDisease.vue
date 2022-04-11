@@ -105,7 +105,7 @@
       ></v-autocomplete> -->
 
       <!-- Disease category field -->
-      <label for="link-category">Link Categories</label>
+      <!-- <label for="link-category">Link Categories</label> -->
       <!-- <v-autocomplete
         :items="categories"
         v-model="disease.disease_categories"
@@ -268,13 +268,14 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors);
-          //if (error.response.data.errors.name) {
-          this.errorResponse = error.response.data.errors;
-          console.log("serverResponse:");
-          //console.log(this.serverResponse);
-          //this.errorAlertDisplay(this.serverResponse);
-          //}
+          //console.log(error.response.data.errors);
+          if (error.response.data[0] !== "User does not have this permission") {
+          this.serverResponse = error.response.data.errors.name[0];
+          this.errorAlertDisplay(this.serverResponse);
+          }else{
+            this.serverResponse = error.response.data[0];
+            this.errorAlertDisplay(this.serverResponse);
+          }
         })
         .finally(() => loader.hide());
     },

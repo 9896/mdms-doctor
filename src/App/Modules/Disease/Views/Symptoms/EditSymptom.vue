@@ -91,11 +91,14 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors.name[0]);
-          //if (error.response.data.errors.name) {
-            this.serverResponse = error.response.data.errors.name[0];
-            this.errorAlertDisplay(this.serverResponse)
-          //}
+          //console.log(error.response.data.errors.name[0]);
+          if (error.response.data[0] !== "User does not have this permission") {
+          this.serverResponse = error.response.data.errors.name[0];
+          this.errorAlertDisplay(this.serverResponse);
+          }else{
+            this.serverResponse = error.response.data[0];
+            this.errorAlertDisplay(this.serverResponse);
+          }
         })
         .finally(() => loader.hide());
     },
